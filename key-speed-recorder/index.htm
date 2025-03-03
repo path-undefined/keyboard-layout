@@ -1,0 +1,138 @@
+<html>
+
+<head>
+  <title>Key Speed Recorder</title>
+  <style>
+    #text-prompt {
+      font-size: 24px;
+    }
+
+    #user-input {
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <input id="user-input" type="type">
+  <p id="text-prompt"></p>
+  <p id="status"></p>
+  <pre id="result" style="color: grey;"></pre>
+
+  <script>
+    const userInput = document.querySelector("#user-input");
+    const textPrompt = document.querySelector("#text-prompt");
+    const status = document.querySelector("#status");
+    const result = document.querySelector("#result");
+
+    const keys = "qwertyuiopasdfghjkl;zxcvbnm";
+    const sampleNumber = 20;
+    const combosRecorded = ["fp","vf","eq","qf","jf","oh","gp","en","rd","hz","ph","no","hf","yk","ll","ei","of","so","he","id","qz","xv","jo","sl","tt","mr","dw","gh","dn","zq","jv","yp","lg","ja","ow","iy","di","ek","qd","sy","zd","ul","ik","ko","av","ew","qo","nl","yd","wh","oi","iu","ht","hv","tz","un","ay","zg","fr","jl","nj","wd","eu","oq","ux","rg","ue","ng","ia","ae","rk","lt","cc","qx","ok","xs","cs","zn","ts","rt","rx","cp","ej","dt","jz","jp","wm","nc","fn","de","kp","mj","fe","ch","op","iv","ya","ax","qt","kt","ks","gv","ym","fd","vj","vl","va","jr","tq","wy","ap","qn","xf","lx","na","hg","gk","xd","go","az","yx","vy","dj","da","wj","gc","nt","ef","xr","rn","ps","zz","gd","zm","os","ki","ns","dk","oj","tu","px","hj","nh","pm","ih","mf","dp","sh","at","pw","vo","gj","rz","sx","ev","fu","jn","hi","ez","pn","uz","pd","uo","sr","ly","fw","fs","ls","kj","cx","qr","if","qc","hw","ii","rr","pa","fj","za","ji","mq","xj","tm","eo","jd","zr","uc","wg","rc","tp","mo","cq","ct","qj","hp","tv","yv","dd","fz","rf","li","xq","ag","gi","er","cy","xh","ep","ss","qv","jy","ru","hk","dm","hr","pv","tf","tn","zi","pz","wc","yi","lv","fk","hs","dq","wq","qp","hc","wk","pr","rp","ld","nk","yy","nq","kr","wa","lj","xk","ft","ea","km","yt","rq","kk","wl","ho","hn","xz","ak","rl","ck","sa","vx","kg","ec","ri","sm","dx","nn","wz","dg","kx","mp","kz","et","mn","uw","or","le","ke","tk","oz","zp","ry","xp","sg","nu","ox","td","kv","al","ug","zj","fh","am","ie","vh","jc","jw","pf","dl","zl","zt","sj","qw","gx","ci","lc","ze","pg","tx","vs","lp","ip","vu","ao","ai","xe","mt","xi","vd","to","ex","we","gg","yw","mg","pi","qe","nd","zy","yn","yg","lk","ni","wo","ms","hh","ys","gw","jj","dy","ha","uq","uj","ig","md","in","vn","ge","yq","vi","hd","co","is","xl","ir","vt","xn","cj","ro","cw","mc","yh","lq","jk","gn","es","om","gu","au","gm","ka","gq","ra","um","an","cm","mk","ne","ny","fo","hx","eg","jh","fy","kl","pq","fa","fg","qs","ey","jg","ln","te","oa","vw","gs","mv","gy","it","vq","lh","fl","xy","vc","uh","ot","zo","vz","df","lo","hy","fv","ee","ov","mz","gr","el","lm","yj","zk","do","cv","ce","im","th","sq","me","cl","ij","tl","qa","ku","ma","vg","lf","cr","uv","kh","sf","xc","xa","dz","sn","ky","jt","iq","io","yz","ff","pt","mi","iw","dc","ta","si","oe","vk","xw","cu","il","oo","af","tg","ou","wi","pc","dh","cd","rm","du","wp","aj","hu","nz","qu","xg","zc","ga","cf","kd","ah","sd","fi","nm","pp","uf","xm","yf","xo","nf","og","oy","qk","vp","us","gl","ti","aq","cz","lr","zv","fq","ye","dr","zs","mw","pk","rs","fc","uu","ic","zf","on","cn","ar","ol","tr","wu","se","pl","rh","tc","vr","mx","ca","qg","tj","pe","re","vv","py","wx","yu","js","kw","tw","zw","gt","qy","as","jm","ud","jx","hq","ml","wv","rj","ut","je","ua","lz","yc","qi","gf","la","hm","uk","qh","kq","xu","rv","wr","yl","ju","po","st","zh","jq","kf","sp","ww","wn","oc","lu","vm","nw","ve","wt","zx","ac","pu","yo","mh","kc","nv","su","hl","sc","ui","fx","ur","od","sk","ad","yr","nx","eh","sz","sv","sw","ix","qm","ty","rw","up","qq","aw","uy","ws","fm","ql","xx","wf","iz","zu","mu","em","cg","mm","lw","xt","kn","dv","gz","np","aa","ds","ed","pj","nr",";p","p;",";y",";i",";h",";v","q;",";q","h;","g;",";t",";c","v;","d;","u;","m;","r;",";x",";n",";k","x;",";z","i;",";e",";u",";m","a;","t;","j;",";r","o;","k;","c;",";f",";w",";l",";d",";j","s;","z;",";s",";;","e;","n;",";o","l;",";g","f;","w;",";a","y;","pb","rb","fb","db","bp","bq","kb","bi","bv","bu","bx","vb",";b","bk","bs","bt","be","bo","b;","tb","cb","bb","bg","yb","ab","ub","ib","lb","br","by","jb","bh","sb","bn","nb","qb","gb","bj","eb","wb","bm","bl","zb","bf","hb","ba","bz","bw","bd","bc","ob","xb","mb","my"]
+    const comboSpeedResult = {};
+
+    const combos = [];
+    for (let i = 0; i < keys.length; i++) {
+      for (let j = 0; j < keys.length; j++) {
+        const combo = keys.charAt(i) + keys.charAt(j);
+
+        if (combosRecorded.includes(combo)) {
+          continue;
+        }
+
+        combos.push(combo);
+      }
+    }
+
+
+    let sampleData = initSampleRecording();
+
+    updateDisplay();
+
+    let started = false;
+    let startTime = 0;
+    userInput.addEventListener("keydown", (ev) => {
+      ev.preventDefault();
+
+      if (!started) {
+        if (ev.key === sampleData.combo.charAt(0)) {
+          startTime = Date.now();
+          started = true;
+
+          userInput.value = ev.key;
+        }
+      } else {
+        if (ev.key === sampleData.combo.charAt(1)) {
+          const time = Date.now() - startTime;
+          lastResult = time;
+          sampleData.samples.push(time);
+          userInput.value += ev.key;
+
+          updateDisplay();
+
+          if (sampleData.samples.length >= sampleNumber) {
+            comboSpeedResult[sampleData.combo] = {
+              avg: Math.round(sampleData.samples.reduce((acc, i) => acc + i, 0) / sampleNumber),
+              samples: sampleData.samples,
+            }
+
+            combosRecorded.push(sampleData.combo);
+
+            sampleData = initSampleRecording();
+
+            updateDisplay();
+          }
+        }
+
+        userInput.value = "";
+        started = false;
+      }
+
+      if (ev.key === "Backspace") {
+        if (sampleData.samples.length === 0) {
+          const lastCombo = combosRecorded.pop();
+          sampleData = {
+            combo: lastCombo,
+            samples: comboSpeedResult[lastCombo].samples,
+          }
+        }
+
+        sampleData.samples.pop();
+
+        started = false;
+
+        updateDisplay();
+      }
+    });
+
+    function initSampleRecording() {
+      const index = Math.floor(Math.random() * combos.length)
+      const combo = combos[index];
+      combos.splice(index, 1);
+      return {
+        combo,
+        samples: [],
+      };
+    }
+
+    function updateDisplay() {
+      const prompt = `
+        ${sampleData.combo} (samples: ${sampleData.samples.length} / ${sampleNumber})
+      `;
+      const info = `
+        Last Results: ${sampleData.samples.join(", ")} <br/>
+        Average Result: ${sampleData.samples.reduce((acc, i) => acc + i, 0) / sampleData.samples.length} <br/>
+        Combos Left: ${combos.length} <br/>
+      `;
+      const resultJson =
+        JSON.stringify(combosRecorded) + "\n\n" +
+        Object.entries(comboSpeedResult).map(([key, value]) =>
+          `"${key}": ${JSON.stringify(value)},`).join("\n");
+
+      textPrompt.innerHTML = prompt;
+      status.innerHTML = info;
+      result.innerHTML = resultJson;
+    }
+  </script>
+</body>
+
+</html>
